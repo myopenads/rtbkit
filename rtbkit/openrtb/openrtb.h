@@ -673,6 +673,19 @@ struct Video {
 
 
 /*****************************************************************************/
+/* NATIVE                                                                    */
+/*****************************************************************************/
+
+struct Native {
+    Datacratic::UnicodeString request; ///< request payload
+    Datacratic::UnicodeString ver; ///< native ad version
+    Datacratic::List<ApiFramework> api; ///< Supported APIs (table 5.5)
+    Datacratic::List<CreativeAttribute> battr;
+    Json::Value ext;
+}
+
+
+/*****************************************************************************/
 /* PRODUCER / PUBLISHER                                                      */
 /*****************************************************************************/
 
@@ -761,6 +774,7 @@ struct Impression {
     Datacratic::Id id;                             ///< Impression ID within BR
     Datacratic::Optional<Banner> banner;           ///< If it's a banner ad
     Datacratic::Optional<Video> video;             ///< If it's a video ad
+    Datacratic::Optional<Native> native;             ///< If it's a video ad
     Datacratic::UnicodeString displaymanager;          ///< What renders the ad
     Datacratic::UnicodeString displaymanagerver;        ///< What version of that thing
     Datacratic::TaggedBoolDef<0> instl;            ///< Is it interstitial
@@ -807,7 +821,7 @@ struct Content {
     Datacratic::CSList keywords;         ///< Content keywords
     Datacratic::UnicodeString contentrating;    ///< Content rating (eg Mature)
     Datacratic::UnicodeString userrating;       ///< Content user rating (eg 3 stars)
-    Datacratic::UnicodeString context;          ///< Content context (table 6.13)
+    Datacratic::List<ContentContext> context;   ///< Content context (table 6.13)
     Datacratic::TaggedBool livestream;   ///< Is this being live streamed?
     SourceRelationship sourcerelationship;  ///< 1 = direct, 0 = indirect
     Datacratic::Optional<Producer> producer;  ///< Content producer
@@ -861,6 +875,7 @@ struct SiteInfo {
     Datacratic::Url page;          ///< URL of the page to be shown
     Datacratic::Url ref;           ///< Referrer URL that got user to page
     Datacratic::UnicodeString search; ///< Search string that got user to page
+    Datacratic::TaggedBool mobile; ///< Mobile-optimized signal, where 0 = no, 1 = yes
 };
 
 struct Site: public Context, public SiteInfo {
@@ -928,6 +943,7 @@ struct Geo {
     std::string dma;             ///< Direct Marketing Association code
     /// Rubicon extensions
     Datacratic::TaggedBool latlonconsent;  ///< Has user given consent for lat/lon use?
+    Datacratic::TaggedInt utfoffset;  ///< Local time as the number +/- of minutes from UTC
 };
 
 
@@ -957,6 +973,7 @@ struct Geo {
 struct Device {
     ~Device();
     Datacratic::TaggedBool dnt;        ///< If 1 then do not track is on
+    Datacratic::TaggedBool lmt;        ///< Limit Ad Tracking 0 = unrestricted, 1 = limited
     Datacratic::UnicodeString ua;         ///< User agent of device
     std::string ip;             ///< IP address of device
     Datacratic::Optional<Geo> geo;     ///< Geolocation of device
@@ -967,12 +984,17 @@ struct Device {
     std::string macsha1;       ///< MAC ADDRESS: SHA1 (OpenRTB 2.2)
     std::string macmd5;        ///< MAC ADDRESS: MD5 (OpenRTB 2.2)
     std::string ipv6;           ///< IPv6 address
+    Datacratic::TaggedInt h;    ///< Physical height of the screen in pixels
+    Datacratic::TaggedInt w;    ///< Physical width of the screen in pixels
+    Datacratic::TaggedInt ppi;  ///< Screen size as pixels per linear inch
+    Datacratic::TaggedFloat pxratio;   ///< The ratio of physical pixels to device independent pixels
     Datacratic::UnicodeString carrier;    ///< Carrier or ISP (derived from IP address)
     Datacratic::UnicodeString language;   ///< Browser language.  ISO 639-1 (alpha-2).
     Datacratic::UnicodeString make;       ///< Device make
     Datacratic::UnicodeString model;      ///< Device model
     Datacratic::UnicodeString os;         ///< Device OS
     Datacratic::UnicodeString osv;         ///< Device OS version
+    Datacratic::UnicodeString hwv;         ///< Hardware version of the device (e.g., “5S” for iPhone 5S).
     Datacratic::TaggedBool js;         ///< Javascript is supported? 1 or 0
     ConnectionType connectiontype;    ///< Connection type (table 6.10)
     DeviceType devicetype; ///< Device type (table 6.16)
@@ -1177,6 +1199,10 @@ struct Bid {
                                             ///< if its in bid request, required in bid response
     Datacratic::TaggedInt w;                ///< width of ad in pixels
     Datacratic::TaggedInt h;                ///< height of ad in pixels
+
+    Datacratic::List<ContentCategory> cat;  ///< creative categories
+    Datacratic::UnicodeString bundle;       ///< unique bundle id of app being advertised
+
     Json::Value ext;              ///< Extended bid fields
 };
 

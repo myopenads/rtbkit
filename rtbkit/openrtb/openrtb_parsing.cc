@@ -62,6 +62,7 @@ DefaultDescription()
              new StringIdDescription());
     addField("banner", &Impression::banner, "Banner information if a banner ad");
     addField("video", &Impression::video, "Video information if a video ad");
+    addField("native", &Impression::native, "Native information if a native ad");
     addField("displaymanager", &Impression::displaymanager, "Display manager that renders the ad");
     addField("displaymanagerver", &Impression::displaymanagerver, "Version of the display manager");
     addField("instl", &Impression::instl, "Is the ad interstitial");
@@ -188,6 +189,7 @@ DefaultDescription()
     addField("page",   &SiteInfo::page,   "URL of the page");
     addField("ref",    &SiteInfo::ref,    "Referrer URL to the page");
     addField("search", &SiteInfo::search, "Search string to page");
+    addField("mobile", &SiteInfo::mobile, "Mobile-optimized signal");
 }
 
 DefaultDescription<OpenRTB::App>::
@@ -206,6 +208,7 @@ DefaultDescription()
 {
     addField("lat", &Geo::lat, "Latiture of user in degrees from equator");
     addField("lon", &Geo::lon, "Longtitude of user in degrees (-180 to 180)");
+    addField("utfoffset", &Geo::utfoffset, "UTF Offset in minutes");
     addField("country", &Geo::country, "ISO 3166-1 country code");
     addField("region", &Geo::region, "ISO 3166-2 Region code");
     addField("regionfips104", &Geo::regionfips104, "FIPS 10-4 region code");
@@ -224,9 +227,14 @@ DefaultDescription<OpenRTB::Device>::
 DefaultDescription()
 {
     addField("dnt", &Device::dnt, "Is do not track set");
+    addField("lmt", &Device::lmt, "Is tracking limited");
     addField("ua", &Device::ua, "User agent of device");
     addField("ip", &Device::ip, "IP address of device");
     addField("geo", &Device::geo, "Geographic location of device");
+    addField("h", &Device::h, "Physical height of device");
+    addField("w", &Device::w, "Physical width of device");
+    addField("ppi", &Device::ppi, "Screen size");
+    addField("pxratio", &Device::pxratio, "Physical pixel ratio");
     addField("didsha1", &Device::didsha1, "SHA-1 Device ID");
     addField("didmd5", &Device::didmd5, "MD5 Device ID");
     addField("dpidsha1", &Device::dpidsha1, "SHA-1 Device Platform ID");
@@ -240,6 +248,7 @@ DefaultDescription()
     addField("model", &Device::model, "Device model");
     addField("os", &Device::os, "Device OS");
     addField("osv", &Device::osv, "Device OS version");
+    addField("hwv", &Device::hwv, "Hardware version");
     addField("js", &Device::js, "Javascript is supported");
     addField("connectiontype", &Device::connectiontype, "Device connection type");
     addField("devicetype", &Device::devicetype, "Device type");
@@ -312,6 +321,8 @@ DefaultDescription()
     addField("dealid", &Bid::dealid, "Deal Id for PMP Auction");
     addField("w", &Bid::w, "width of ad in pixels");
     addField("h", &Bid::h, "height of ad in pixels");
+    addField("cat", &Bid::cat, "IAB content categories of the content");
+    addField("bundle", &Bid::bundle, "bundle of app beign advertised");
     addField("ext", &Bid::ext, "Extensions");
 }
 

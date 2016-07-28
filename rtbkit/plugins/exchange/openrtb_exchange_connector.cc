@@ -138,8 +138,8 @@ parseBidRequest(HttpAuctionHandler & connection,
 
     // Check that it's version 2.1
     std::string openRtbVersion = it->second;
-    if (openRtbVersion != "2.1" && openRtbVersion != "2.2") {
-        connection.sendErrorResponse("UNSUPPORTED_OPENRTB_VERSION", "The request is required to be using version 2.1 or 2.2 of the OpenRTB protocol but requested " + openRtbVersion);
+    if (openRtbVersion != "2.1" && openRtbVersion != "2.2" && openRtbVersion != "2.3") {
+        connection.sendErrorResponse("UNSUPPORTED_OPENRTB_VERSION", "The request is required to be using version 2.1 or 2.2 or 2.3 of the OpenRTB protocol but requested " + openRtbVersion);
         return none;
     }
 

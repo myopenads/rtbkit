@@ -238,7 +238,7 @@ struct NAsset {
     ~NAsset();
 	Datacratic::Id id; ///< 
 	Datacratic::TaggedBoolDef<0> required; ///< 
-	NTitle title; ///< Title object for title assets.
+	Datacratic::Optional<NTitle> title; ///< Title object for title assets.
 	Datacratic::Optional<NImage> img; ///< Image object for image assets.
 	Datacratic::Optional<NVideo> video; ///< Video object for video assets.
 	Datacratic::Optional<NData> data; ///< Data object for brand name, description, ratings, prices etc.
@@ -260,6 +260,55 @@ struct NativeRequest {
 	std::vector<NAsset> assets; ///< An array of Asset Objects. Any bid response must comply with the array of elements expressed in the bid request
     Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
     Json::Value unparseable;           ///< Unparseable fields get put here
+};
+
+struct NLinkResponse {
+    Datacratic::UnicodeString url;
+    std::vector<Datacratic::UnicodeString> clicktrackers;
+    Datacratic::UnicodeString fallback;
+    Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
+};
+
+struct NVideoResponse {
+    Datacratic::UnicodeString vasttag;
+};
+
+struct NDataResponse {
+    Datacratic::UnicodeString label;
+    Datacratic::UnicodeString value;
+    Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
+};
+
+struct NImageResponse {
+    Datacratic::UnicodeString url;
+    Datacratic::TaggedInt w;
+    Datacratic::TaggedInt h;
+    Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
+};
+
+struct NTitleResponse {
+    Datacratic::UnicodeString text;
+    Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
+};
+
+struct NAssetResponse {
+    Datacratic::Id id;
+    Datacratic::TaggedBoolDef<0> required; ///< 
+    Datacratic::Optional<NTitleResponse> title; ///< Title object for title assets.
+    Datacratic::Optional<NImageResponse> img; ///< Image object for image assets.
+    Datacratic::Optional<NVideoResponse> video; ///< Video object for video assets.
+    Datacratic::Optional<NDataResponse> data; ///< Data object for brand name, description, ratings, prices etc.
+    Datacratic::Optional<NLinkResponse> link;
+    Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
+};
+
+struct NativeResponse {
+    Datacratic::UnicodeString ver;
+    Datacratic::List<NAssetResponse> assets;
+    Datacratic::Optional<NLinkResponse> link;
+    std::vector<Datacratic::UnicodeString> imptrackers;
+    Datacratic::UnicodeString jstracker;
+    Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
 };
 
 } // namespace std

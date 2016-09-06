@@ -321,6 +321,7 @@ struct BidRequest {
     Url url;
     std::string ipAddress;
     Datacratic::UnicodeString userAgent;
+    OpenRTB::Optional<OpenRTB::NativeRequest> native;
 
     /** This field should be used to indicate what User IDs are available
         in the bid request.  These are normally used by the augmentors to

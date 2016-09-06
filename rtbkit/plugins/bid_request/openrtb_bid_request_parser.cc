@@ -9,6 +9,8 @@
 #include "jml/utils/json_parsing.h"
 #include "rtbkit/openrtb/openrtb.h"
 #include "rtbkit/openrtb/openrtb_parsing.h"
+#include "rtbkit/openrtb/openrtb_native.h"
+#include "rtbkit/openrtb/openrtb_native_parsing.h"
 
 using namespace std;
 
@@ -20,6 +22,7 @@ namespace RTBKIT {
     Logging::Category OpenRTBBidRequestLogs::error22("[ERROR] OpenRTB Bid Request Parser 2.2 error", OpenRTBBidRequestLogs::trace22);
 
     static DefaultDescription<OpenRTB::BidRequest> desc;
+    static DefaultDescription<OpenRTB::NativeRequest> n_desc;
 
 namespace { const char* DefaultVersion = "2.2"; }
 
@@ -751,6 +754,7 @@ onPMP(OpenRTB::PMP & pmp) {
 /*
  * v2.3
  */
+
 void
 OpenRTBBidRequestParser2point3::
 onImpression(OpenRTB::Impression & imp) {
@@ -765,6 +769,12 @@ void
 OpenRTBBidRequestParser2point3::
 onNative(OpenRTB::Native & native) {
     ctx.spot.formats.push_back(Format(0, 0));
+
+    StreamingJsonParsingContext jsonContext("Native Bid Request", native.request.c_str(), native.request.size());
+    OpenRTB::NativeRequest req;
+    n_desc.parseJson(&req, jsonContext);
+
+    ctx.br->native.reset(std::move(req));
 }
 
 namespace {

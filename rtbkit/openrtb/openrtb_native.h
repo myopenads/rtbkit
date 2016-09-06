@@ -165,6 +165,7 @@ struct ImageType: public Datacratic::TaggedEnum<ImageType> {
 */
 
 struct NTitle {
+    ~NTitle();
 	Datacratic::TaggedInt len; ///<Maximum length of the text in the title element.
 	Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
 };
@@ -179,6 +180,7 @@ struct NTitle {
 */
 
 struct NImage {
+    ~NImage();
 	ImageType type;
 	Datacratic::TaggedInt w;
 	Datacratic::TaggedInt wmin;
@@ -200,6 +202,7 @@ struct NImage {
 */
 
 struct NVideo {
+    ~NVideo();
 	Datacratic::List<MimeType> mimes;
 	Datacratic::TaggedFloat minduration;
 	Datacratic::TaggedFloat maxduration;
@@ -220,6 +223,7 @@ struct NVideo {
 */
 
 struct NData {
+    ~NData();
 	DataType type;
 	Datacratic::TaggedInt len;
 	Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
@@ -230,8 +234,9 @@ struct NData {
 /*****************************************************************************/
 
 struct NAsset {
+    ~NAsset();
 	Datacratic::Id id; ///< 
-	Datacratic::TaggedBoolDef<0>  required; ///< 
+	Datacratic::TaggedBoolDef<0> required; ///< 
 	NTitle title; ///< Title object for title assets.
 	Datacratic::Optional<NImage> img; ///< Image object for image assets.
 	Datacratic::Optional<NVideo> video; ///< Video object for video assets.
@@ -244,6 +249,7 @@ struct NAsset {
 /*****************************************************************************/
 
 struct NativeRequest {
+    ~NativeRequest();
 	Datacratic::UnicodeString ver; ///< Version of the Native Markup version in use.
 	ContextType contextType; ///< The context in which the ad appears.
 	ContextSubType contextSubType; ///< A more detailed context in which the ad appears.
@@ -252,6 +258,7 @@ struct NativeRequest {
 	Datacratic::TaggedIntDef<0> seq  ///< 0 for the first ad, 1 for the second ad, and so on. NOT be used in combination with placementCount
 	std::vector<NAsset> assets; ///< An array of Asset Objects. Any bid response must comply with the array of elements expressed in the bid request
     Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
+    Json::Value unparseable;           ///< Unparseable fields get put here
 }
 
 } // namespace std

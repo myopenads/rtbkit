@@ -7,23 +7,28 @@
 
 namespace OpenRTB {
 
-Title::
-~Title()
+NTitle::
+~NTitle()
 {
 }
 
-Video::
-~Video()
+NImage::
+~NImage()
 {
 }
 
-Data::
-~Data()
+NVideo::
+~NVideo()
 {
 }
 
-Asset::
-~Asset()
+NData::
+~NData()
+{
+}
+
+NAsset::
+~NAsset()
 {
 }
 

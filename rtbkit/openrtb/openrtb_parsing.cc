@@ -321,6 +321,7 @@ DefaultDescription()
              new StringIdDescription());
     addField("nurl", &Bid::nurl, "Win notice/ad markup URL");
     addField("adm", &Bid::adm, "Ad markup");
+    addField("native", &Bid::native, "Native response json as string");
     addField("adomain", &Bid::adomain, "Advertiser domain(s)");
     addField("iurl", &Bid::iurl, "Image URL for content checking");
     addField("cid", &Bid::cid, "Campaign ID",

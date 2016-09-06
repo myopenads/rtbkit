@@ -22,6 +22,7 @@
 #pragma once
 
 #include "openrtb.h"
+#include "openrtb_parsing.h"
 
 namespace OpenRTB {
 
@@ -153,8 +154,8 @@ struct ImageType: public Datacratic::TaggedEnum<ImageType> {
         ICON = 1,
         LOGO = 2,
         MAIN = 3
-    }
-}
+    };
+};
 
 /*****************************************************************************/
 /* TITLE OBJECT                                                              */
@@ -255,10 +256,10 @@ struct NativeRequest {
 	ContextSubType contextSubType; ///< A more detailed context in which the ad appears.
 	PlacementType placementType; ///< The design/format/layout of the ad unit being offered.
 	Datacratic::TaggedIntDef<1> placementCount; ///< The number of identical placements in this Layout.
-	Datacratic::TaggedIntDef<0> seq  ///< 0 for the first ad, 1 for the second ad, and so on. NOT be used in combination with placementCount
+	Datacratic::TaggedIntDef<0> seq;  ///< 0 for the first ad, 1 for the second ad, and so on. NOT be used in combination with placementCount
 	std::vector<NAsset> assets; ///< An array of Asset Objects. Any bid response must comply with the array of elements expressed in the bid request
     Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
     Json::Value unparseable;           ///< Unparseable fields get put here
-}
+};
 
 } // namespace std

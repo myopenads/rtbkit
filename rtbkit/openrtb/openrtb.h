@@ -682,7 +682,7 @@ struct Native {
     Datacratic::List<ApiFramework> api; ///< Supported APIs. Refer to List 5.6.
     Datacratic::List<CreativeAttribute> battr; ///< Blocked creative attributes. Refer to List 5.3
     Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
-}
+};
 
 
 /*****************************************************************************/

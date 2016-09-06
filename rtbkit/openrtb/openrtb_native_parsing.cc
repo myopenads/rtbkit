@@ -85,7 +85,7 @@ DefaultDescription()
     addField("mimes", &NVideo::mimes, "Content MIME types supported");
     addField("minduration", &NVideo::minduration, "Minimum duration in seconds");
     addField("maxduration", &NVideo::maxduration, "Maximum duration in seconds");
-    addField("protocol", &NVideo::protocol, "Bid response supported protocol");
+    addField("protocols", &NVideo::protocols, "Bid response supported protocols");
     addField("ext", &NVideo::ext, "Extensions to the protocol go here");
 }
 

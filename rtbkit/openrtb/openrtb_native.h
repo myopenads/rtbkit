@@ -207,7 +207,7 @@ struct NVideo {
 	Datacratic::List<MimeType> mimes;
 	Datacratic::TaggedFloat minduration;
 	Datacratic::TaggedFloat maxduration;
-	VideoBidResponseProtocol protocol;
+	Datacratic::List<VideoBidResponseProtocol> protocols;
 	Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
 };
 

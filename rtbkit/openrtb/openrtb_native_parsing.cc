@@ -62,7 +62,7 @@ DefaultDescription()
 DefaultDescription<OpenRTB::NData>::
 DefaultDescription()
 {
-    addField("type", &NData::type, "Tyep of data");
+    addField("type", &NData::type, "Type of data");
     addField("len", &NData::len, "Max length of data");
     addField("ext", &NData::ext, "Extensions to the protocol go here");
 }
@@ -70,7 +70,7 @@ DefaultDescription()
 DefaultDescription<OpenRTB::NImage>::
 DefaultDescription()
 {
-    addField("type", &NImage::type, "Tyep of image");
+    addField("type", &NImage::type, "Type of image");
     addField("h", &NImage::hmin, "Ad height");
     addField("hmin", &NImage::hmin, "Ad minimum height");
     addField("w", &NImage::wmin, "Ad width");

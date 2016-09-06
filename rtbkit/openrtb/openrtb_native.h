@@ -3,10 +3,10 @@
 
     This file is part of RTBkit.
 
-    Programmatic Description of the OpenRTB 2.0 specification.
+    Programmatic Description of the OpenRTB Dynamic Native Ads 1.1 specification.
 
-    Documentation is taken from the OpenRTB Specification 2.0 available at
-    http://www.iab.net/media/file/OpenRTB_API_Specification_Version2.0_FINAL.PDF
+    Documentation is taken from the OpenRTB Dynamic Native Ads API Specification Version 1.1
+    http://www.iab.com/wp-content/uploads/2016/03/OpenRTB-Native-Ads-Specification-1-1_2016.pdf
 
     That document has the following license:
 

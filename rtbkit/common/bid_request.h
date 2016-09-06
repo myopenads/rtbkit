@@ -22,6 +22,7 @@
 #include "rtbkit/common/currency.h"
 #include "tags.h"
 #include "rtbkit/openrtb/openrtb.h"
+#include "rtbkit/openrtb/openrtb_native.h"
 #include "rtbkit/common/plugin_interface.h"
 
 namespace RTBKIT {

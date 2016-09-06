@@ -53,7 +53,7 @@ DefaultDescription()
              new StringIdDescription());
     addField("required", &NAsset::required, "Set if this assets is required");
     addField("title", &NAsset::title, "Title object");
-    addField("img", &NAsset::image, "Image object");
+    addField("img", &NAsset::img, "Image object");
     addField("video", &NAsset::video, "Video object");
     addField("data", &NAsset::data, "Data object");
     addField("ext", &NAsset::ext, "Extended asset attributes");
@@ -85,7 +85,7 @@ DefaultDescription()
     addField("mimes", &NVideo::mimes, "Content MIME types supported");
     addField("minduration", &NVideo::minduration, "Minimum duration in seconds");
     addField("maxduration", &NVideo::maxduration, "Maximum duration in seconds");
-    addField("protocols", &NVideo::protocols, "Bid response supported protocols");
+    addField("protocol", &NVideo::protocol, "Bid response supported protocol");
     addField("ext", &NVideo::ext, "Extensions to the protocol go here");
 }
 

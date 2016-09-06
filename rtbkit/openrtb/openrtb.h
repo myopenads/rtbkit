@@ -679,9 +679,9 @@ struct Video {
 struct Native {
     Datacratic::UnicodeString request; ///< request payload
     Datacratic::UnicodeString ver; ///< native ad version
-    Datacratic::List<ApiFramework> api; ///< Supported APIs (table 5.5)
-    Datacratic::List<CreativeAttribute> battr;
-    Json::Value ext;
+    Datacratic::List<ApiFramework> api; ///< Supported APIs. Refer to List 5.6.
+    Datacratic::List<CreativeAttribute> battr; ///< Blocked creative attributes. Refer to List 5.3
+    Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
 }
 
 
@@ -774,7 +774,7 @@ struct Impression {
     Datacratic::Id id;                             ///< Impression ID within BR
     Datacratic::Optional<Banner> banner;           ///< If it's a banner ad
     Datacratic::Optional<Video> video;             ///< If it's a video ad
-    Datacratic::Optional<Native> native;             ///< If it's a video ad
+    Datacratic::Optional<Native> native;             ///< If it's a native ad
     Datacratic::UnicodeString displaymanager;          ///< What renders the ad
     Datacratic::UnicodeString displaymanagerver;        ///< What version of that thing
     Datacratic::TaggedBoolDef<0> instl;            ///< Is it interstitial

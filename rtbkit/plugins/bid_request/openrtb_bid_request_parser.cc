@@ -30,7 +30,7 @@ openRTBBidRequestParserFactory(const std::string & version)
 
     if(version == "2.0" || version == "2.1") {
         return std::unique_ptr<OpenRTBBidRequestParser2point1>(new OpenRTBBidRequestParser2point1());
-    } else if(version == "2.2") {
+    } else if(version == "2.2" || version == "2.3") {
         return std::unique_ptr<OpenRTBBidRequestParser2point2>(new OpenRTBBidRequestParser2point2());
     }
 
@@ -640,6 +640,9 @@ onDevice(OpenRTB::Device& device) {
     OpenRTBBidRequestParser::onDevice(device);
 }
 
+/*
+ * 2.2
+ */
 
 void
 OpenRTBBidRequestParser2point2::

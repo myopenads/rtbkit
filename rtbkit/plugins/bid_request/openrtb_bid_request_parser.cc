@@ -30,8 +30,10 @@ openRTBBidRequestParserFactory(const std::string & version)
 
     if(version == "2.0" || version == "2.1") {
         return std::unique_ptr<OpenRTBBidRequestParser2point1>(new OpenRTBBidRequestParser2point1());
-    } else if(version == "2.2" || version == "2.3") {
+    } else if(version == "2.2") {
         return std::unique_ptr<OpenRTBBidRequestParser2point2>(new OpenRTBBidRequestParser2point2());
+    } else if(version == "2.3") {
+        return std::unique_ptr<OpenRTBBidRequestParser2point3>(new OpenRTBBidRequestParser2point3());
     }
 
     THROW(OpenRTBBidRequestLogs::error) << "Version : " << version << " not supported in RTBkit." << endl;
@@ -744,6 +746,25 @@ onDeal(OpenRTB::Deal & deal) {
 void
 OpenRTBBidRequestParser2point2::
 onPMP(OpenRTB::PMP & pmp) {
+}
+
+/*
+ * v2.3
+ */
+void
+OpenRTBBidRequestParser2point3::
+onImpression(OpenRTB::Impression & imp) {
+    if(ctx.spot.native) {
+        this->onNative(*ctx.spot.native);
+    }
+    // Call V2.2
+    OpenRTBBidRequestParser2point2::onImpression(imp);
+}
+
+void
+OpenRTBBidRequestParser2point3::
+onNative(OpenRTB::Native & native) {
+    ctx.spot.formats.push_back(Format(0, 0));
 }
 
 namespace {

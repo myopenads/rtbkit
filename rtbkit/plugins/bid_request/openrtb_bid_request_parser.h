@@ -117,4 +117,11 @@ struct OpenRTBBidRequestParser2point2 : OpenRTBBidRequestParser {
         virtual void onDeal(OpenRTB::Deal & deal);
 };
 
+struct OpenRTBBidRequestParser2point3 : OpenRTBBidRequestParser2point2 {
+
+    private :
+        virtual void onImpression(OpenRTB::Impression & imp);
+        virtual void onNative(OpenRTB::Native & native);
+};
+
 } // namespace RTBKIT

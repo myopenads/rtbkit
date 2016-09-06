@@ -151,6 +151,16 @@ DefaultDescription()
     addField("ext", &Video::ext, "Extensions to the protocol go here");
 }
 
+DefaultDescription<OpenRTB::Native>::
+DefaultDescription()
+{
+    addField("request", &Native::request, "Native request in json strong");
+    addField("ver", &Native::ver, "Native ad format version");
+    addField("api", &Native::api, "Supported APIs");
+    addField("battr", &Native::battr, "Which creative attributes are blocked");
+    addField("ext", &Native::ext, "Extensions to the protocol go here");
+}
+
 DefaultDescription<OpenRTB::Publisher>::
 DefaultDescription()
 {

@@ -278,6 +278,12 @@ struct DefaultDescription<OpenRTB::Video>
 };
 
 template<>
+struct DefaultDescription<OpenRTB::Native>
+    : public StructureDescription<OpenRTB::Native> {
+    DefaultDescription();
+};
+
+template<>
 struct DefaultDescription<OpenRTB::Content>
     : public StructureDescription<OpenRTB::Content> {
     DefaultDescription();

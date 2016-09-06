@@ -164,7 +164,7 @@ struct ImageType: public Datacratic::TaggedEnum<ImageType> {
 	The Title object is to be used for title element of the Native ad.
 */
 
-struct Title {
+struct NTitle {
 	Datacratic::TaggedInt len; ///<Maximum length of the text in the title element.
 	Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
 };
@@ -178,7 +178,7 @@ struct Title {
 	etc. Recommended sizes and aspect ratios are included in the Image Asset Types section.
 */
 
-struct Image {
+struct NImage {
 	ImageType type;
 	Datacratic::TaggedInt w;
 	Datacratic::TaggedInt wmin;
@@ -199,7 +199,7 @@ struct Image {
 	refer to OpenRTB.
 */
 
-struct Video {
+struct NVideo {
 	Datacratic::List<MimeType> mimes;
 	Datacratic::TaggedFloat minduration;
 	Datacratic::TaggedFloat maxduration;
@@ -219,7 +219,7 @@ struct Video {
 	additional recommendations are also included in the Data Asset Types table.
 */
 
-struct Data {
+struct NData {
 	DataType type;
 	Datacratic::TaggedInt len;
 	Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
@@ -229,13 +229,13 @@ struct Data {
 /* ASSET                                                                     */
 /*****************************************************************************/
 
-struct Asset {
+struct NAsset {
 	Datacratic::Id id; ///< 
 	Datacratic::TaggedBoolDef<0>  required; ///< 
-	Title title; ///< Title object for title assets.
-	Datacratic::Optional<Image> img; ///< Image object for image assets.
-	Datacratic::Optional<Video> video; ///< Video object for video assets.
-	Datacratic::Optional<Data> data; ///< Data object for brand name, description, ratings, prices etc.
+	NTitle title; ///< Title object for title assets.
+	Datacratic::Optional<NImage> img; ///< Image object for image assets.
+	Datacratic::Optional<NVideo> video; ///< Video object for video assets.
+	Datacratic::Optional<NData> data; ///< Data object for brand name, description, ratings, prices etc.
 	Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
 };
 
@@ -250,7 +250,7 @@ struct NativeRequest {
 	PlacementType placementType; ///< The design/format/layout of the ad unit being offered.
 	Datacratic::TaggedIntDef<1> placementCount; ///< The number of identical placements in this Layout.
 	Datacratic::TaggedIntDef<0> seq  ///< 0 for the first ad, 1 for the second ad, and so on. NOT be used in combination with placementCount
-	std::vector<Asset> assets; ///< An array of Asset Objects. Any bid response must comply with the array of elements expressed in the bid request
+	std::vector<NAsset> assets; ///< An array of Asset Objects. Any bid response must comply with the array of elements expressed in the bid request
     Json::Value ext; ///< Placeholder for exchange-specific extensions to OpenRTB
 }
 

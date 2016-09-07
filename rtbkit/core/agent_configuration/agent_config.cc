@@ -64,6 +64,15 @@ video(int width, int height, uint32_t duration, uint64_t bitrate, std::string na
     return creative;
 }
 
+Creative
+Creative::
+native(std::string name, int id, std::string dealId)
+{
+    Creative creative(0, 0, name, id, dealId);
+    creative.type = Creative::Type::Native;
+    return creative;
+}
+
 void
 Creative::
 fromJson(const Json::Value & val)
@@ -210,6 +219,12 @@ isVideo() const {
     return type == Type::Video;
 }
 
+bool
+Creative::
+isNative() const {
+    return type == Type::Native;
+}
+
 std::string
 Creative::
 typeString() const {
@@ -218,6 +233,8 @@ typeString() const {
         return "image";
     case Type::Video:
         return "video";
+    case Type::Native:
+        return "native";
     }
 
     return "unknown";

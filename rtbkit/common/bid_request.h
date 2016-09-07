@@ -151,6 +151,9 @@ struct AdSpot: public OpenRTB::Impression {
     /// This field indicates the segments for filtering of creatives
     SegmentsBySource restrictions;
 
+    /// Parsed native request
+    OpenRTB::NativeRequest nativeRequest;
+
     void serialize(ML::DB::Store_Writer & store) const;
     void reconstitute(ML::DB::Store_Reader & store);
 };
@@ -322,7 +325,6 @@ struct BidRequest {
     Url url;
     std::string ipAddress;
     Datacratic::UnicodeString userAgent;
-    OpenRTB::Optional<OpenRTB::NativeRequest> native;
 
     /** This field should be used to indicate what User IDs are available
         in the bid request.  These are normally used by the augmentors to

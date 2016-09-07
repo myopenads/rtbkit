@@ -759,7 +759,7 @@ void
 OpenRTBBidRequestParser2point3::
 onImpression(OpenRTB::Impression & imp) {
     if(ctx.spot.native) {
-        this->onNative(*ctx.spot.native);
+        ctx.spot.nativeRequest.reset(this->onNative(*ctx.spot.native));
     }
     // Call V2.2
     OpenRTBBidRequestParser2point2::onImpression(imp);
@@ -774,7 +774,7 @@ onNative(OpenRTB::Native & native) {
     OpenRTB::NativeRequest req;
     n_desc.parseJson(&req, jsonContext);
 
-    ctx.br->native.reset(std::move(req));
+    return std::move(req);
 }
 
 namespace {
